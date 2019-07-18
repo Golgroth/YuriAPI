@@ -4,7 +4,7 @@ Use this API to simplify Spigot plugin development.
 
 # Command creation
 
-```
+```java
 public class CustomCommand {
 
 @Cmd(command = "customcommand")
@@ -14,7 +14,7 @@ public void customCmdRun(CommandClass c){
 }
 ```
 
-```
+```java
 public class Main extends JavaPlugin {
 
     @Override
@@ -26,9 +26,9 @@ public class Main extends JavaPlugin {
 }
 ```
 
-#Get config.yml values using annotations
+# Get config.yml values using annotations
 
-```
+```java
 public class Main extends JavaPlugin {
 
     @ConfigVar(varname = "custom-variable")

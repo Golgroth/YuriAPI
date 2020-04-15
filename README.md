@@ -8,7 +8,7 @@ Use this API to simplify Spigot plugin development.
 public class CustomCommand {
 
 @Cmd(command = "customcommand")
-public void customCmdRun(CommandClass c){
+public void customCmdRun(CommandEvent c){
     c.getSender().sendMessage("working");
 }
 }
@@ -34,13 +34,20 @@ public class Main extends JavaPlugin {
     @ConfigVar(varname = "custom-variable")
     private String cfgVar;
 
+    @ConfigVarExceptionListener
+    public void onCfgException(ConfigVarException e){
+        e.printStackTrace();
+        Bukkit.shutdown();
+    }
+
     @Override
     public void onLoad (){
-       ConfigVarManager.register(this);
+       ConfigVarManager.register(this, this);
     }
 
     @Override
     public void onEnable (){
+       ConfigVarManager.update(this);
        Bukkit.getConsoleSender().sendMessage(cfgVar);
     }
 
